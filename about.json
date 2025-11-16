@@ -7,5 +7,19 @@
   "learn_more": "TODO",
   "theme_version": "0.0.1",
   "assets": {},
-  "modifiers": {}
+  "modifiers": {},
+  "color_schemes": {
+    "Pokemon Loght": {
+      "primary": "222222",
+      "secondary": "ffffff",
+      "tertiary": "0088cc",
+      "quaternary": "e45735",
+      "header_background": "ffffff",
+      "header_primary": "333333",
+      "highlight": "ffff4d",
+      "danger": "e45735",
+      "success": "009900",
+      "love": "fa6c8d"
+    }
+  }
 }
