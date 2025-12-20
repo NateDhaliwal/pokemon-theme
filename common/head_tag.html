@@ -1,7 +1,7 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   if (window.location === "search") {
-    const searchBar = document.getElementById("someId");
+    const searchBar = document.getElementsByClassName("search-term__input")[0];
     searchBar.value = "in:all";
   }
 });
