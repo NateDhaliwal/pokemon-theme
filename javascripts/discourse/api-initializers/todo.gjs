@@ -13,6 +13,7 @@ class FirstPosts extends Component {
   }
 
   async loadPosts() {
+    console.log("Loading");
     let topicIds = [123, 1807]; // change to your topic IDs
     let posts = [];
     for (let id of topicIds) {
