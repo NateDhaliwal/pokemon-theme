@@ -2,6 +2,7 @@ import { apiInitializer } from "discourse/lib/api";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { htmlSafe } from "@ember/template";
+import { ajax } from "discourse/lib/ajax";
 
 class FirstPosts extends Component {
   @tracked posts = [];
@@ -15,8 +16,7 @@ class FirstPosts extends Component {
     let topicIds = [123, 1807]; // change to your topic IDs
     let posts = [];
     for (let id of topicIds) {
-      const res = await fetch(`/t/${id}.json`);
-      const data = await res.json();
+      const data = await ajax(`/t/${id}.json`);
       if (data.post_stream && data.post_stream.posts.length > 0) {
         posts.push(data.post_stream.posts[0]);
       }
