@@ -17,7 +17,12 @@ class FirstPosts extends Component {
     let topicIds = [123, 1807]; // change to your topic IDs
     let posts = [];
     for (let id of topicIds) {
-      const data = await ajax(`/t/${id}.json`);
+      // const data = await ajax(`/t/${id}.json`);
+      // if (data.post_stream && data.post_stream.posts.length > 0) {
+      //   posts.push(data.post_stream.posts[0]);
+      // }
+      let res = await fetch(`/t/${id}.json`);
+      let data = await res.json();
       if (data.post_stream && data.post_stream.posts.length > 0) {
         posts.push(data.post_stream.posts[0]);
       }
