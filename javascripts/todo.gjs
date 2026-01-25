@@ -35,5 +35,5 @@ class FirstPosts extends Component {
 }
 
 export default apiInitializer((api) => {
-  api.renderInOutlet("above-main-container", FirstPosts);
+  api.renderInOutlet("discovery-list-container-top", FirstPosts);
 });
