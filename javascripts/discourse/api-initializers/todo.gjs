@@ -11,7 +11,7 @@ class FirstPosts extends Component {
   }
 
   async loadPosts() {
-    let topicIds = [123, 456]; // change to your topic IDs
+    let topicIds = [123, 1807]; // change to your topic IDs
     let posts = [];
     for (let id of topicIds) {
       const res = await fetch(`/t/${id}.json`);
