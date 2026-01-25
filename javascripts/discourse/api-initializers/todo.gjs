@@ -29,7 +29,7 @@ class FirstPosts extends Component {
     this.posts = posts;
   }
 
-  static template = <template>
+  <template>
     {{#each this.posts as |post|}}
       <div class="first-post-preview">
         <h4>{{post.topic_title}}</h4>
