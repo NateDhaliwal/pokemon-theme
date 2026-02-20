@@ -7,5 +7,6 @@ export default apiInitializer((api) => {
     const currentRoute = router.currentRoute.name;
     const currentUser = api.container.lookup('service:currentUser');
     console.log(currentUser);
+    console.log(router.currentRoute);
   });
 });
