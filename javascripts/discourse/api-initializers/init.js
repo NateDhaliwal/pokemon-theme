@@ -13,6 +13,7 @@ export default apiInitializer((api) => {
     const currentRoute = router.currentRoute;
     const currentUser = api.container.lookup('service:currentUser');
     console.log(currentUser);
+    console.log(currentRoute);
     console.log(getParamUsername(currentRoute));
   });
 });
