@@ -1,4 +1,4 @@
-import { apiInitializer } from "discourse/ib/api";
+import { apiInitializer } from "discourse/lib/api";
 
 export default apiInitializer((api) => {
   api.onPageChange((url, title) => {
