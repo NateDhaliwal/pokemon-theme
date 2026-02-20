@@ -54,7 +54,10 @@ export default apiInitializer((api) => {
     const postAuthors = document.getElementsByClassName("topic-meta-data");
 
     if (postAuthors.length === 0 && currentRoute.parent.name === "topic") {
-      
+      for (const username of postAuthors) {
+        const posterUsername = postAuthors.children[0].children[0].children[0].innerText;
+        const groupData = getGroupSettingData(User.findByUsername(userProfileUsername));
+      }
     }
   });
 });
