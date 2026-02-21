@@ -5,8 +5,7 @@ group_icon_data:
     name: group
     properties:
       groups:
-        type: list
-        list_type: group_list
+        type: groups
         required: true
       icon:
         type: string
