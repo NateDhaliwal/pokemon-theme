@@ -67,11 +67,7 @@ export default apiInitializer((api) => {
         console.log(posterUsername);
         const groupData = User.findByUsername(posterUsername).then((res) => getGroupSettingData(res));
         // const groupData = getGroupSettingData(userModel);
-        console.log(htmlSafe(
-                  iconHTML(groupData.icon, {
-                    label: groupData.icon_label
-                  }),
-                ));
+        console.log(groupData);
 
         if (groupData !== null) {
           if (user.children[0].children[0].children[0].children.length !== 0)  {
