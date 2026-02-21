@@ -5,7 +5,6 @@ import User from "discourse/models/user";
 
 function getParamUsername(currentRoute) {
   if (currentRoute.params.username) return currentRoute.params.username;
-  console.log(currentRoute.params);
 
   return getParamUsername(currentRoute.parent);
 }
@@ -58,7 +57,6 @@ export default apiInitializer((api) => {
     const postAuthors = document.getElementsByClassName("topic-meta-data");
 
     if (postAuthors.length !== 0 && currentRoute.parent.name === "topic") {
-      console.log(postAuthors);
       for (const user of postAuthors) {
         const userInfo = user.children[0].children[0].children[0];
         const posterUsername = userInfo.innerText;
