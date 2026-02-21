@@ -76,12 +76,14 @@ export default apiInitializer((api) => {
 
     // User cards
     appEvents.on("card:show", async (username, target, event) => {
+      // It's quite hacky, but we wait 1 second before trying to get the element via DOM.
+      
       // Source - https://stackoverflow.com/a/47480429
       // Posted by Etienne Martin, modified by community. See post 'Timeline' for change history
       // Retrieved 2026-02-21, License - CC BY-SA 4.0
 
       const delay = ms => new Promise(res => setTimeout(res, ms));
-      await delay(500);
+      await delay(1000);
       const userCardUserLink = document.getElementsByClassName("user-profile-link")[0]; // Only 1 user card open at a time
       const userModel = await User.findByUsername(username);
       const groupData = getGroupSettingData(userModel);
