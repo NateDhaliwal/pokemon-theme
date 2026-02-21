@@ -64,7 +64,7 @@ export default apiInitializer((api) => {
         const posterUsername = user.children[0].children[0].children[0].innerText;
         const userModel = await User.findByUsername(posterUsername);
         // const groupData = getGroupSettingData(userModel);
-        let groupData = getGroupSettingData(res);
+        let groupData = getGroupSettingData(userModel);
         console.log(groupData);
 
         if (groupData !== null) {
