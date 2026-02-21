@@ -38,21 +38,17 @@ export default apiInitializer((api) => {
     }
 
     if (userProfileUsername !== null) {
-      const userModel = User.findByUsername(userProfileUsername);
+      const userModel = await User.findByUsername(userProfileUsername);
       const groupData = getGroupSettingData(userModel);
 
       if (groupData !== null) {
-        document.getElementsByClassName(
-          "user-profile-names__primary"
-        )[0]
-          .children[0]
-          .replaceWith(
-            htmlSafe(
-              iconHTML(groupData.icon, {
-                label: groupData.icon_label
-              }),
-            )
-          );
+        const svgParent = document.getElementsByClassName("user-profile-names__primary")[0];
+        if (svgParent.children.length !== 0) svgParent.removeChild(svgParent.children[0]);
+        svgParent.innerHTML += htmlSafe(
+          iconHTML(groupData.icon, {
+            label: groupData.icon_label
+          }),
+        );
       }
     }
 
@@ -61,38 +57,18 @@ export default apiInitializer((api) => {
     if (postAuthors.length !== 0 && currentRoute.parent.name === "topic") {
       console.log(postAuthors);
       for (const user of postAuthors) {
-        const posterUsername = user.children[0].children[0].children[0].innerText;
+        const userInfo = user.children[0].children[0].children[0];
+        const posterUsername = userInfo.innerText;
         const userModel = await User.findByUsername(posterUsername);
-        // const groupData = getGroupSettingData(userModel);
         let groupData = getGroupSettingData(userModel);
-        console.log(groupData);
 
         if (groupData !== null) {
-          if (user.children[0].children[0].children[0].children.length !== 0)  {
-            user
-              .children[0]
-              .children[0]
-              .children[0]
-              .children[0]
-              .replaceWith(
-                htmlSafe(
-                  iconHTML(groupData.icon, {
-                    label: groupData.icon_label
-                  }),
-                )
-              );
-          } else {
-            user
-              .children[0]
-              .children[0]
-              .children[0]
-              .innerHTML += (
-                htmlSafe(
-                  iconHTML(groupData.icon, {
-                    label: groupData.icon_label
-                  }),
-                )
-              );
+          if (userInfo.children.length !== 0) userInfo.removeChild(userInfo.children[0]);{
+            userInfo.innerHTML += htmlSafe(
+              iconHTML(groupData.icon, {
+                label: groupData.icon_label
+              }),
+            );
           }
         }
       }
