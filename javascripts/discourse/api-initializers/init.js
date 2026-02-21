@@ -37,15 +37,14 @@ export default apiInitializer((api) => {
       userProfileUsername = null;
     }
 
-    console.log(userProfileUsername);
-
+    // User routes
     if (userProfileUsername !== null) {
       const userModel = await User.findByUsername(userProfileUsername);
       const groupData = getGroupSettingData(userModel);
 
       if (groupData !== null) {
         const svgParent = document.getElementsByClassName("user-profile-names__primary")[0];
-        if (svgParent.children.length !== 0) svgParent.removeChild(svgParent.children[0]);
+        if (svgParent.children.length > 0) svgParent.removeChild(svgParent.children[0]);
         svgParent.innerHTML += htmlSafe(
           iconHTML(groupData.icon, {
             label: groupData.icon_label
@@ -54,6 +53,7 @@ export default apiInitializer((api) => {
       }
     }
 
+    // Topics and posts
     const postAuthors = document.getElementsByClassName("topic-meta-data");
 
     if (postAuthors.length !== 0 && currentRoute.parent.name === "topic") {
@@ -62,17 +62,34 @@ export default apiInitializer((api) => {
         const userInfo = user.children[0].children[0].children[0];
         const posterUsername = userInfo.innerText;
         const userModel = await User.findByUsername(posterUsername);
-        let groupData = getGroupSettingData(userModel);
+        const groupData = getGroupSettingData(userModel);
 
         if (groupData !== null) {
-          if (userInfo.children.length !== 0) userInfo.removeChild(userInfo.children[0]);{
-            userInfo.innerHTML += htmlSafe(
-              iconHTML(groupData.icon, {
-                label: groupData.icon_label
-              }),
-            );
-          }
+          if (userInfo.children.length > 0) userInfo.removeChild(userInfo.children[0]);
+          userInfo.innerHTML += htmlSafe(
+            iconHTML(groupData.icon, {
+              label: groupData.icon_label
+            }),
+          );
         }
+      }
+    }
+
+    // User cards
+    const userCardUserLinks = document.getElementsByClassName("user-profile-link"); // Only 1 user card open at a time
+    if (userCardUserLinks.length !== null) {
+      const userCardUserLink = userCardUserLinks[0];
+      const username = userCardUserLink.children[0].innerText;
+      const userModel = await User.findByUsername(posterUsername);
+      const groupData = getGroupSettingData(userModel);
+
+      if (groupData !== null) {
+        if (userCardUserLink.children.length > 1) userCardUserLink.removeChild(userCardUserLink.children[1]);
+        userCardUserLink.innerHTML += htmlSafe(
+          iconHTML(groupData.icon, {
+            label: groupData.icon_label
+          }),
+        );
       }
     }
   });
