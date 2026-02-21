@@ -25,7 +25,7 @@ function getGroupSettingData(currentUser) {
 export default apiInitializer((api) => {
   const router = api.container.lookup('service:router');
   
-  api.onPageChange((url, title) => {
+  api.onPageChange(async (url, title) => {
     const currentRoute = router.currentRoute;
     const currentUser = api.container.lookup('service:currentUser');
     console.log(currentUser.groups);
@@ -63,12 +63,9 @@ export default apiInitializer((api) => {
       for (const user of postAuthors) {
         const posterUsername = user.children[0].children[0].children[0].innerText;
         let groupData;
-        const userModel = User.findByUsername(posterUsername)
-          .then((res) => {
-            groupData = getGroupSettingData(res);
-            console.log(groupData);
-          });
+        const userModel = await User.findByUsername(posterUsername);
         // const groupData = getGroupSettingData(userModel);
+        let groupData = getGroupSettingData(res);
         console.log(groupData);
 
         if (groupData !== null) {
