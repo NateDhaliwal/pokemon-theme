@@ -49,7 +49,7 @@ export default apiInitializer((api) => {
         svgParent.innerHTML += htmlSafe(
           iconHTML(groupData.icon, {
             label: groupData.icon_label
-          }),
+          })
         );
       }
     }
@@ -70,7 +70,7 @@ export default apiInitializer((api) => {
           userInfo.innerHTML += htmlSafe(
             iconHTML(groupData.icon, {
               label: groupData.icon_label
-            }),
+            })
           );
         }
       }
@@ -87,7 +87,7 @@ export default apiInitializer((api) => {
         userCardUserLink.innerHTML += htmlSafe(
           iconHTML(groupData.icon, {
             label: groupData.icon_label
-          }),
+          })
         );
       }
     }
