@@ -90,7 +90,7 @@ export default apiInitializer((api) => {
               .children[0]
               .children[0]
               .children[0]
-              .appendChild(
+              .innerHTML += (
                 htmlSafe(
                   iconHTML(groupData.icon, {
                     label: groupData.icon_label
