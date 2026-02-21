@@ -30,7 +30,7 @@ export default apiInitializer((api) => {
     const currentRoute = router.currentRoute;
     const currentUser = api.container.lookup('service:currentUser');
 
-    let userProfileUsername;
+    let userProfileUsername = getParamsUsername(currentRoute);
     try {
       userProfileUsername = getParamsUsername(currentRoute);
     } catch (TypeError) {
