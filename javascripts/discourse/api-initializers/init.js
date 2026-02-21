@@ -13,7 +13,6 @@ function getGroupSettingData(currentUser) {
   for (const groupSetting of settings.group_icon_data) {
     const settingGroups = groupSetting.groups;
     for (const group of currentUser.groups) {
-      console.log(group);
       if (settingGroups.includes(group.id)) {
         return groupSetting;
       }
