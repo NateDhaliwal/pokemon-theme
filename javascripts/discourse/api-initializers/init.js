@@ -63,8 +63,8 @@ export default apiInitializer((api) => {
         console.log(user);
         const posterUsername = user.children[0].children[0].children[0].innerText;
         console.log(posterUsername);
-        const userModel = User.findByUsername(posterUsername).then((res) => console.log(res));
-        const groupData = getGroupSettingData(userModel);
+        const groupData = User.findByUsername(posterUsername).then((res) => getGroupSettingData(res));
+        // const groupData = getGroupSettingData(userModel);
         console.log(htmlSafe(
                   iconHTML(groupData.icon, {
                     label: groupData.icon_label
