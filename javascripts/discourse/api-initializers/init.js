@@ -38,26 +38,62 @@ export default apiInitializer((api) => {
 
     if (userProfileUsername !== null) {
       const groupData = getGroupSettingData(User.findByUsername(userProfileUsername));
-      document.getElementsByClassName(
-        "user-profile-names__primary"
-      )[0]
-        .children[0]
-        .replaceWith(
-          htmlSafe(
-            iconHTML(groupData.icon, {
-              // eslint-disable-next-line no-undef
-              label: groupData.icon_label
-            }),
-          )
-        );
+
+      if (groupData !== null) {
+        document.getElementsByClassName(
+          "user-profile-names__primary"
+        )[0]
+          .children[0]
+          .replaceWith(
+            htmlSafe(
+              iconHTML(groupData.icon, {
+                label: groupData.icon_label
+              }),
+            )
+          );
+      }
     }
 
     const postAuthors = document.getElementsByClassName("topic-meta-data");
 
-    if (postAuthors.length === 0 && currentRoute.parent.name === "topic") {
-      for (const username of postAuthors) {
+    if (postAuthors.length !== 0 && currentRoute.parent.name === "topic") {
+      for (const user of postAuthors) {
         const posterUsername = postAuthors.children[0].children[0].children[0].innerText;
         const groupData = getGroupSettingData(User.findByUsername(userProfileUsername));
+        console.log(htmlSafe(
+                  iconHTML(groupData.icon, {
+                    label: groupData.icon_label
+                  }),
+                ));
+
+        if (groupData !== null) {
+          if (user.children[0].children[0].children[0].children.length !== 0)  {
+            user
+              .children[0]
+              .children[0]
+              .children[0]
+              .children[0]
+              .replaceWith(
+                htmlSafe(
+                  iconHTML(groupData.icon, {
+                    label: groupData.icon_label
+                  }),
+                )
+              );
+          } else {
+            user
+              .children[0]
+              .children[0]
+              .children[0]
+              .appendChild(
+                htmlSafe(
+                  iconHTML(groupData.icon, {
+                    label: groupData.icon_label
+                  }),
+                )
+              );
+          }
+        }
       }
     }
   });
