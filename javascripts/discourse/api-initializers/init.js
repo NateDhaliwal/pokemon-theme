@@ -25,6 +25,7 @@ function getGroupSettingData(currentUser) {
 
 export default apiInitializer((api) => {
   const router = api.container.lookup('service:router');
+  const appEvents = api.container.lookup('service:appEvents');
   
   api.onPageChange(async (url, title) => {
     const currentRoute = router.currentRoute;
@@ -76,11 +77,9 @@ export default apiInitializer((api) => {
     }
 
     // User cards
-    const userCardUserLinks = document.getElementsByClassName("user-profile-link"); // Only 1 user card open at a time
-    if (userCardUserLinks.length !== 0) {
-      const userCardUserLink = userCardUserLinks[0];
-      const username = userCardUserLink.children[0].innerText;
-      const userModel = await User.findByUsername(posterUsername);
+    appEvents.on("card:show", (username, target, event) {
+      const userCardUserLink = document.getElementsByClassName("user-profile-link")[0]; // Only 1 user card open at a time
+      const userModel = await User.findByUsername(username);
       const groupData = getGroupSettingData(userModel);
 
       if (groupData !== null) {
