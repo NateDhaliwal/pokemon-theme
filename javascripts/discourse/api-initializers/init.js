@@ -62,10 +62,9 @@ export default apiInitializer((api) => {
     if (postAuthors.length !== 0 && currentRoute.parent.name === "topic") {
       console.log(postAuthors);
       for (const user of postAuthors) {
-        console.log(user);
         const posterUsername = user.children[0].children[0].children[0].innerText;
-        console.log(posterUsername);
-        const groupData = User.findByUsername(posterUsername).then((res) => getGroupSettingData(res));
+        let groupData;
+        const userModel = User.findByUsername(posterUsername).then((res) => groupData = getGroupSettingData(res));
         // const groupData = getGroupSettingData(userModel);
         console.log(groupData);
 
