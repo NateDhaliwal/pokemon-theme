@@ -37,8 +37,8 @@ export default apiInitializer((api) => {
     }
 
     if (userProfileUsername !== null) {
-      const user = User.findByUsername(userProfileUsername);
-      const groupData = getGroupSettingData(user);
+      const userModel = User.findByUsername(userProfileUsername);
+      const groupData = getGroupSettingData(userModel);
 
       if (groupData !== null) {
         document.getElementsByClassName(
@@ -63,8 +63,8 @@ export default apiInitializer((api) => {
         console.log(user);
         const posterUsername = user.children[0].children[0].children[0].innerText;
         console.log(posterUsername);
-        const user = User.findByUsername(posterUsername).then((res) => console.log(res));
-        const groupData = getGroupSettingData(user);
+        const userModel = User.findByUsername(posterUsername).then((res) => console.log(res));
+        const groupData = getGroupSettingData(userModel);
         console.log(htmlSafe(
                   iconHTML(groupData.icon, {
                     label: groupData.icon_label
