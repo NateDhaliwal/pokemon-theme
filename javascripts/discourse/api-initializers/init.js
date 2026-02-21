@@ -10,7 +10,7 @@ function getParamUsername(currentRoute) {
 }
 
 function getGroupSettingData(currentUser) {
-  console.log(currentUser._result);
+  console.log(currentUser);
   
   for (const groupSetting of settings.group_icon_data) {
     for (const group of currentUser.groups) {
@@ -26,7 +26,7 @@ function getGroupSettingData(currentUser) {
 export default apiInitializer((api) => {
   const router = api.container.lookup('service:router');
   
-  api.onPageChange((url, title) => {
+  api.onPageChange(async (url, title) => {
     const currentRoute = router.currentRoute;
     const currentUser = api.container.lookup('service:currentUser');
     console.log(currentUser.groups);
@@ -39,7 +39,8 @@ export default apiInitializer((api) => {
     }
 
     if (userProfileUsername !== null) {
-      const groupData = getGroupSettingData(User.findByUsername(userProfileUsername));
+      const user = await User.findByUsername(userProfileUsername);
+      const groupData = getGroupSettingData(user);
 
       if (groupData !== null) {
         document.getElementsByClassName(
