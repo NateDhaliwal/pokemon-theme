@@ -77,7 +77,7 @@ export default apiInitializer((api) => {
 
     // User cards
     const userCardUserLinks = document.getElementsByClassName("user-profile-link"); // Only 1 user card open at a time
-    if (userCardUserLinks.length !== null) {
+    if (userCardUserLinks.length !== 0) {
       const userCardUserLink = userCardUserLinks[0];
       const username = userCardUserLink.children[0].innerText;
       const userModel = await User.findByUsername(posterUsername);
