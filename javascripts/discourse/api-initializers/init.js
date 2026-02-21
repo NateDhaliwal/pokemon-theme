@@ -26,7 +26,7 @@ function getGroupSettingData(currentUser) {
 export default apiInitializer((api) => {
   const router = api.container.lookup('service:router');
   
-  api.onPageChange(async (url, title) => {
+  api.onPageChange((url, title) => {
     const currentRoute = router.currentRoute;
     const currentUser = api.container.lookup('service:currentUser');
     console.log(currentUser.groups);
@@ -39,7 +39,7 @@ export default apiInitializer((api) => {
     }
 
     if (userProfileUsername !== null) {
-      const user = await User.findByUsername(userProfileUsername);
+      const user = User.findByUsername(userProfileUsername);
       const groupData = getGroupSettingData(user);
 
       if (groupData !== null) {
