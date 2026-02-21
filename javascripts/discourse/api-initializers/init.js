@@ -25,6 +25,7 @@ export default apiInitializer((api) => {
   const router = api.container.lookup('service:router');
   
   api.onPageChange((url, title) => {
+    console.log(settings.group_icon_data);
     const currentRoute = router.currentRoute;
     const currentUser = api.container.lookup('service:currentUser');
 
@@ -45,7 +46,7 @@ export default apiInitializer((api) => {
           htmlSafe(
             iconHTML(groupData.icon, {
               // eslint-disable-next-line no-undef
-              label: groupData.iconLabel
+              label: groupData.icon_label
             }),
           )
         );
