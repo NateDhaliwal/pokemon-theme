@@ -61,8 +61,10 @@ export default apiInitializer((api) => {
 
     if (postAuthors.length !== 0 && currentRoute.parent.name === "topic") {
       for (const user of postAuthors) {
+        console.log(user);
         const posterUsername = user.children[0].children[0].children[0].innerText;
-        const user = await User.findByUsername(posterUsername);
+        console.log(posterUsername);
+        const user = User.findByUsername(posterUsername).then((res) => return res);
         const groupData = getGroupSettingData(user);
         console.log(htmlSafe(
                   iconHTML(groupData.icon, {
