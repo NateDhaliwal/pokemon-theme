@@ -81,7 +81,7 @@ export default apiInitializer((api) => {
       // Retrieved 2026-02-21, License - CC BY-SA 4.0
 
       const delay = ms => new Promise(res => setTimeout(res, ms));
-      delay(5000);
+      await delay(1000);
 
       console.log(document.getElementsByClassName("user-profile-link")[0]);
       const userCardUserLink = document.getElementsByClassName("user-profile-link")[0]; // Only 1 user card open at a time
