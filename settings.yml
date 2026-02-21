@@ -1,5 +1,6 @@
 group_icon_data:
   type: objects
+  default: []
   schema:
     name: group
     properties:
