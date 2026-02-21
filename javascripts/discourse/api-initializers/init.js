@@ -78,9 +78,7 @@ export default apiInitializer((api) => {
 
     // User cards
     appEvents.on("card:show", async (username, target, event) => {
-      console.log(target);
-      console.log(username);
-      console.log(event);
+      console.log(document.getElementsByClassName("user-profile-link"));
       const userCardUserLink = document.getElementsByClassName("user-profile-link")[0]; // Only 1 user card open at a time
       console.log(userCardUserLink);
       const userModel = await User.findByUsername(username);
