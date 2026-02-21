@@ -10,9 +10,11 @@ function getParamUsername(currentRoute) {
 }
 
 function getGroupSettingData(currentUser) {
+  console.log(currentUser);
+  
   for (const groupSetting of settings.group_icon_data) {
     for (const group of currentUser.groups) {
-      if (group.id === groupSetting.group) {
+      if (groupSetting.group.includes(group.id)) {
         return groupSetting;
       }
     }
