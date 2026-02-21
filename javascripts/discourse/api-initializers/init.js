@@ -28,7 +28,6 @@ export default apiInitializer((api) => {
   api.onPageChange(async (url, title) => {
     const currentRoute = router.currentRoute;
     const currentUser = api.container.lookup('service:currentUser');
-    console.log(currentUser.groups);
 
     let userProfileUsername;
     try {
@@ -36,6 +35,8 @@ export default apiInitializer((api) => {
     } catch (TypeError) {
       userProfileUsername = null;
     }
+
+    console.log(userProfileUsername);
 
     if (userProfileUsername !== null) {
       const userModel = await User.findByUsername(userProfileUsername);
