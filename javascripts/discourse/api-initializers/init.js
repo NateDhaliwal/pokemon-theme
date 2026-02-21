@@ -9,9 +9,7 @@ function getParamUsername(currentRoute) {
   return getParamUsername(currentRoute.parent);
 }
 
-function getGroupSettingData(currentUser) {
-  console.log(currentUser);
-  
+function getGroupSettingData(currentUser) {  
   for (const groupSetting of settings.group_icon_data) {
     for (const group of currentUser.groups) {
       if (groupSetting.group.includes(group.id)) {
@@ -60,6 +58,7 @@ export default apiInitializer((api) => {
     const postAuthors = document.getElementsByClassName("topic-meta-data");
 
     if (postAuthors.length !== 0 && currentRoute.parent.name === "topic") {
+      console.log(postAuthors);
       for (const user of postAuthors) {
         console.log(user);
         const posterUsername = user.children[0].children[0].children[0].innerText;
