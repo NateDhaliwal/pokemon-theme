@@ -77,7 +77,7 @@ export default apiInitializer((api) => {
     }
 
     // User cards
-    appEvents.on("card:show", (username, target, event) => {
+    appEvents.on("card:show", async (username, target, event) => {
       const userCardUserLink = document.getElementsByClassName("user-profile-link")[0]; // Only 1 user card open at a time
       const userModel = await User.findByUsername(username);
       const groupData = getGroupSettingData(userModel);
