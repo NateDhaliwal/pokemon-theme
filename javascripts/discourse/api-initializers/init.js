@@ -76,8 +76,15 @@ export default apiInitializer((api) => {
 
     // User cards
     appEvents.on("card:show", async (username, target, event) => {
+      // Source - https://stackoverflow.com/a/47480429
+      // Posted by Etienne Martin, modified by community. See post 'Timeline' for change history
+      // Retrieved 2026-02-21, License - CC BY-SA 4.0
+
+      const delay = ms => new Promise(res => setTimeout(res, ms));
+      delay(1000);
+
       console.log(document.getElementsByClassName("user-profile-link")[0]);
-      const userCardUserLink = await document.getElementsByClassName("user-profile-link")[0]; // Only 1 user card open at a time
+      const userCardUserLink = document.getElementsByClassName("user-profile-link")[0]; // Only 1 user card open at a time
       console.log(userCardUserLink);
       const userModel = await User.findByUsername(username);
       const groupData = getGroupSettingData(userModel);
