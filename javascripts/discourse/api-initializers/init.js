@@ -62,7 +62,6 @@ export default apiInitializer((api) => {
       console.log(postAuthors);
       for (const user of postAuthors) {
         const posterUsername = user.children[0].children[0].children[0].innerText;
-        let groupData;
         const userModel = await User.findByUsername(posterUsername);
         // const groupData = getGroupSettingData(userModel);
         let groupData = getGroupSettingData(res);
