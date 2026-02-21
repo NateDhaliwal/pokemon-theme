@@ -5,6 +5,7 @@ import User from "discourse/models/user";
 
 function getParamUsername(currentRoute) {
   if (currentRoute.params.username) return currentRoute.params.username;
+  console.log(currentRoute.params);
 
   return getParamUsername(currentRoute.parent);
 }
